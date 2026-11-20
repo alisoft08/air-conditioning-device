@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "author": "TUS NOMBRES Y APELLIDOS",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "tank",
+      "top": -160,
+      "left": -250,
+      "attrs": { "distance": "20" }
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "person",
+      "top": -160,
+      "left": 100,
+      "attrs": { "distance": "100" }
+    },
+    {
+      "type": "wokwi-hx711",
+      "id": "scale",
+      "top": 260,
+      "left": -280,
+      "attrs": { "type": "5kg", "load": "0.8" }
+    },
+    { "type": "wokwi-servo", "id": "gate", "top": 260, "left": 160, "attrs": {} },
+    { "type": "wokwi-lcd1602", "id": "lcd", "top": 0, "left": 270, "attrs": { "pins": "i2c" } },
+    {
+      "type": "wokwi-text",
+      "id": "tankLabel",
+      "top": -205,
+      "left": -250,
+      "attrs": { "text": "DEPOSITO\n5 cm = lleno | 35 cm = vacio" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "personLabel",
+      "top": -205,
+      "left": 100,
+      "attrs": { "text": "PERSONA\n15 cm o menos = cerca" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "scaleLabel",
+      "top": 374.4,
+      "left": -489.6,
+      "attrs": { "text": "PESO DEL MODULO\n0.2 kg = 200 g | 0.8 kg = 800 g" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "tank:VCC", "esp:VIN", "red", [] ],
+    [ "tank:GND", "esp:GND.1", "black", [] ],
+    [ "tank:TRIG", "esp:D18", "orange", [] ],
+    [ "tank:ECHO", "esp:D19", "green", [] ],
+    [ "person:VCC", "esp:VIN", "red", [] ],
+    [ "person:GND", "esp:GND.1", "black", [] ],
+    [ "person:TRIG", "esp:D26", "orange", [] ],
+    [ "person:ECHO", "esp:D27", "green", [] ],
+    [ "scale:VCC", "esp:VIN", "red", [] ],
+    [ "scale:GND", "esp:GND.1", "black", [] ],
+    [ "scale:DT", "esp:D4", "blue", [] ],
+    [ "scale:SCK", "esp:D5", "purple", [] ],
+    [ "gate:V+", "esp:VIN", "red", [] ],
+    [ "gate:GND", "esp:GND.1", "black", [] ],
+    [ "gate:PWM", "esp:D13", "orange", [] ],
+    [ "lcd:VCC", "esp:VIN", "red", [] ],
+    [ "lcd:GND", "esp:GND.1", "black", [] ],
+    [ "lcd:SDA", "esp:D21", "blue", [] ],
+    [ "lcd:SCL", "esp:D22", "purple", [] ]
+  ],
+  "dependencies": {}
+}
